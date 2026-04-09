@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel & Fernando · Mayo 2027</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500&display=swap');
+
+:root{
+  --cream:#FFFFFF;
+  --warm-white:#FFFFFF;
+  --linen:#F5F5F3;
+  --stone:#D8D8D6;
+  --gold:#8A9E82;
+  --gold-light:#9DB096;
+  --charcoal:#0A0A0A;
+  --dark:#0A0A0A;
+  --text:#1A1A1A;
+  --text-mid:#4A4A4A;
+  --sage:#7A8C6E;
+  --green-deep:#5C6E55;
+  --border:rgba(26,26,26,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'EB Garamond',serif;background:var(--warm-white);color:var(--text);overflow-x:hidden;font-size:17px;}
+
+/* ─── LOGIN ─── */
+#login-screen{position:fixed;inset:0;z-index:9999;background:var(--linen);display:flex;align-items:center;justify-content:center;}
+.login-wrap{display:flex;flex-direction:column;align-items:center;width:90%;max-width:480px;text-align:center;padding:4rem 3rem;border:1px solid var(--stone);background:var(--warm-white);}
+.login-ornament{display:flex;align-items:center;gap:1.2rem;margin-bottom:2.5rem;}
+.login-ornament .orn-line{flex:1;height:1px;background:var(--stone);}
+.login-ornament .orn-diamond{width:8px;height:8px;transform:rotate(45deg);background:var(--gold);flex-shrink:0;}
+.login-monogram{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--charcoal);letter-spacing:0.15em;}
+.login-sub{font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--text-mid);margin-bottom:2.5rem;}
+.login-wrap input{width:100%;padding:0.85rem 1.1rem;border:1px solid var(--stone);background:var(--warm-white);font-family:'Montserrat',sans-serif;font-size:0.82rem;color:var(--text);letter-spacing:0.05em;outline:none;margin-bottom:0.8rem;transition:border-color 0.25s;}
+.login-wrap input:focus{border-color:var(--gold);}
+.login-wrap input::placeholder{color:var(--stone);}
+.btn-login{width:100%;padding:0.9rem;background:var(--charcoal);color:var(--cream);border:none;font-family:'Montserrat',sans-serif;font-size:0.68rem;letter-spacing:0.4em;text-transform:uppercase;cursor:pointer;margin-top:0.5rem;transition:background 0.3s;}
+.btn-login:hover{background:var(--gold);}
+.login-error{display:none;color:#9B2020;font-family:'Montserrat',sans-serif;font-size:0.72rem;margin-top:1rem;letter-spacing:0.05em;}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(253,250,245,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--stone);padding:1.1rem 3rem;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--charcoal);letter-spacing:0.3em;}
+nav ul{list-style:none;display:flex;gap:2.5rem;}
+nav ul a{text-decoration:none;font-family:'Montserrat',sans-serif;font-size:0.6rem;font-weight:400;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-mid);transition:color 0.25s;}
+nav ul a:hover{color:var(--gold);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:22px;height:1px;background:var(--charcoal);display:block;}
+
+/* ─── HERO ─── */
+#hero{min-height:100vh;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 5rem 5rem;}
+.hero-tag{font-family:'Montserrat',sans-serif;font-size:0.58rem;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;}
+.hero-names{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,6rem);font-weight:300;color:var(--charcoal);line-height:0.95;letter-spacing:-0.01em;}
+.hero-names .amp{display:block;font-style:italic;color:var(--gold);font-size:0.65em;margin:0.2em 0;}
+.hero-rule{width:60px;height:1px;background:var(--gold);margin:2.5rem 0;}
+.hero-date{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:var(--text-mid);letter-spacing:0.2em;line-height:2.2;}
+.hero-date span{display:block;}
+.hero-date .place{font-size:0.85rem;color:var(--gold);}
+.countdown{display:flex;gap:2rem;margin-top:2.5rem;}
+.count-item{text-align:center;}
+.count-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--charcoal);display:block;line-height:1;}
+.count-label{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-mid);margin-top:0.4rem;display:block;}
+.count-sep{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);align-self:flex-start;padding-top:0.4rem;}
+.hero-right{position:relative;overflow:hidden;}
+.hero-right img{width:100%;height:100%;object-fit:cover;filter:grayscale(8%) brightness(0.95);}
+.hero-right::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--cream) 0%,transparent 8%);}
+.hero-scroll{position:absolute;bottom:2rem;left:5rem;display:flex;flex-direction:column;align-items:flex-start;gap:0.5rem;}
+.hero-scroll span{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--text-mid);}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollDown 2s infinite;}
+@keyframes scrollDown{0%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(1);transform-origin:bottom}}
+
+/* ─── SECTION BASE ─── */
+section{padding:7rem 2rem;}
+.container{max-width:1100px;margin:0 auto;}
+.section-label{font-family:'Montserrat',sans-serif;font-size:0.58rem;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);display:block;text-align:center;margin-bottom:1rem;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4.5vw,3.5rem);font-weight:300;text-align:center;line-height:1.1;color:var(--charcoal);}
+.section-title em{font-style:italic;color:var(--gold);}
+.section-title.light{color:var(--cream);}
+.rule-center{display:flex;align-items:center;gap:1rem;justify-content:center;margin:1.5rem auto;width:fit-content;}
+.rule-center .line{width:50px;height:1px;background:var(--gold);}
+.rule-center .diamond{width:5px;height:5px;transform:rotate(45deg);background:var(--gold);}
+
+/* ─── HISTORIA ─── */
+#historia{background:var(--warm-white);}
+.historia-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:4rem;align-items:center;}
+.historia-text p{font-size:1.15rem;line-height:2;color:var(--text-mid);margin-bottom:1.5rem;}
+.historia-text .firma{font-style:italic;font-size:1.1rem;color:var(--sage);margin-top:2rem;}
+.historia-photo{height:560px;overflow:hidden;position:relative;}
+.historia-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(5%);display:block;transition:transform 0.6s;}
+.historia-photo:hover img{transform:scale(1.03);}
+.historia-photo::before{content:'';position:absolute;inset:0;border:1px solid var(--stone);z-index:1;pointer-events:none;}
+/* caption photo */
+.historia-caption{font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-mid);margin-top:1rem;text-align:center;}
+
+/* ─── PROGRAMA ─── */
+#programa{background:var(--charcoal);}
+#programa .section-label{color:var(--gold-light);}
+.programa-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:4rem;border:1px solid rgba(168,135,74,0.2);}
+.dia-card{background:rgba(255,255,255,0.03);border:none;}
+.dia-head{padding:2.5rem 3rem 2rem;border-bottom:1px solid rgba(168,135,74,0.15);display:flex;flex-direction:column;align-items:flex-start;}
+.dia-num{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:200;color:var(--gold);line-height:1;display:block;}
+.dia-mes{font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:rgba(253,250,245,0.4);margin-top:0.2rem;}
+.dia-lugar{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:rgba(253,250,245,0.7);margin-top:0.6rem;letter-spacing:0.05em;}
+.tl{padding:2.5rem 3rem;}
+.tl-row{display:grid;grid-template-columns:48px 1px 1fr;gap:0 1.5rem;margin-bottom:2rem;align-items:start;}
+.tl-row:not(:last-child){position:relative;}
+.tl-line-wrap{display:flex;flex-direction:column;align-items:center;padding-top:4px;}
+.tl-dot{width:7px;height:7px;transform:rotate(45deg);border:1px solid var(--gold);background:var(--charcoal);flex-shrink:0;}
+.tl-vert{flex:1;width:1px;background:rgba(168,135,74,0.2);margin-top:6px;min-height:30px;}
+.tl-time{font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--gold-light);padding-top:1px;text-align:right;letter-spacing:0.05em;}
+.tl-body h4{font-family:'EB Garamond',serif;font-size:1.05rem;font-weight:500;color:var(--cream);}
+.tl-body p{font-family:'EB Garamond',serif;font-size:0.88rem;color:rgba(253,250,245,0.45);margin-top:0.2rem;}
+.prog-divider{width:1px;background:rgba(168,135,74,0.15);}
+
+/* ─── LOCALIZACIONES ─── */
+#localizaciones{background:var(--linen);}
+.loc-cards{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;max-width:960px;margin:4rem auto 0;}
+.loc-card{background:var(--warm-white);overflow:hidden;}
+.loc-card-img{height:260px;overflow:hidden;}
+.loc-card-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(15%) brightness(0.9);transition:transform 0.6s,filter 0.4s;display:block;}
+.loc-card:hover .loc-card-img img{transform:scale(1.04);filter:grayscale(5%) brightness(1);}
+.loc-card-body{padding:2rem 2.2rem 2.2rem;}
+.loc-tag{font-family:'Montserrat',sans-serif;font-size:0.58rem;color:var(--gold);letter-spacing:0.3em;text-transform:uppercase;display:block;margin-bottom:0.6rem;}
+.loc-card-body h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--charcoal);margin-bottom:0.8rem;}
+.loc-card-body p{font-size:0.95rem;color:var(--text-mid);line-height:1.85;margin-bottom:1.4rem;}
+.btn-ghost{display:inline-block;border-bottom:1px solid var(--gold);color:var(--gold);text-decoration:none;padding-bottom:0.2rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;transition:all 0.25s;}
+.btn-ghost:hover{color:var(--charcoal);border-color:var(--charcoal);}
+
+/* ─── LIGHTBOX ─── */
+#lightbox{display:none;position:fixed;inset:0;z-index:9998;background:rgba(14,12,10,0.97);align-items:center;justify-content:center;}
+#lightbox.active{display:flex;}
+#lightbox img{max-width:88vw;max-height:88vh;}
+#lb-close{position:absolute;top:2rem;right:2.5rem;color:var(--gold);font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}
+#lb-close:hover{opacity:1;}
+
+/* ─── DRESSCODE POPUP ─── */
+#dresscode-popup{display:none;position:fixed;inset:0;z-index:9995;background:rgba(14,12,10,0.88);align-items:center;justify-content:center;}
+#dresscode-popup.active{display:flex;}
+.dc-inner{background:var(--warm-white);max-width:680px;width:90%;padding:3rem;position:relative;max-height:90vh;overflow-y:auto;border:1px solid var(--stone);}
+.dc-inner h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--charcoal);margin-bottom:0.3rem;}
+.dc-sub{font-family:'Montserrat',sans-serif;font-size:0.6rem;color:var(--gold);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:1.5rem;display:block;}
+.dc-inner p{font-size:0.95rem;color:var(--text-mid);line-height:1.85;}
+.dc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;}
+.dc-grid img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:grayscale(10%);}
+.dc-note{font-size:0.9rem;color:var(--text-mid);line-height:1.85;margin-top:1.2rem;padding:1rem 1.2rem;background:var(--linen);border-left:2px solid var(--gold);}
+#dc-close{position:absolute;top:1rem;right:1.5rem;background:none;border:none;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-mid);cursor:pointer;}
+
+/* ─── INFO ─── */
+#info{background:var(--warm-white);}
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--stone);margin-top:4rem;}
+.info-cell{padding:2.5rem 2rem;border-right:1px solid var(--stone);transition:background 0.25s;}
+.info-cell:hover{background:var(--linen);}
+.info-cell:last-child{border-right:none;}
+.info-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:200;color:var(--stone);display:block;line-height:1;margin-bottom:1rem;}
+.info-cell h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--charcoal);margin-bottom:0.8rem;}
+.info-cell p{font-size:0.92rem;color:var(--text-mid);line-height:1.85;}
+.btn-small{display:inline-block;margin-top:1rem;border-bottom:1px solid var(--gold);color:var(--gold);padding-bottom:0.15rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;background:transparent;transition:all 0.2s;text-decoration:none;}
+.btn-small:hover{color:var(--charcoal);border-color:var(--charcoal);}
+.contact-block{margin-top:1.2rem;display:flex;flex-direction:column;gap:0.8rem;}
+.contact-entry{padding:0.8rem 1rem;background:var(--linen);border-left:2px solid var(--gold);}
+.contact-entry .cname{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--charcoal);font-weight:500;display:block;}
+.contact-entry a{font-family:'Montserrat',sans-serif;font-size:0.72rem;color:var(--gold);text-decoration:none;letter-spacing:0.05em;}
+
+/* ─── RSVP ─── */
+#rsvp{background:var(--cream);}
+.rsvp-form{background:var(--warm-white);max-width:780px;margin:3.5rem auto 0;padding:3.5rem;border:1px solid var(--stone);}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;}
+.fg{margin-bottom:1.5rem;}
+.fg label{display:block;font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-mid);margin-bottom:0.6rem;font-weight:500;}
+.fg input,.fg select,.fg textarea{width:100%;padding:0.85rem 1rem;border:1px solid var(--stone);background:var(--warm-white);font-family:'EB Garamond',serif;font-size:1rem;color:var(--text);outline:none;transition:border-color 0.25s;-webkit-appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg textarea{resize:vertical;min-height:90px;}
+.rd-group{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem;}
+.rd-group label{display:flex;align-items:center;gap:0.4rem;font-family:'Montserrat',sans-serif;font-size:0.72rem;letter-spacing:0.04em;color:var(--text);cursor:pointer;padding:0.5rem 1rem;border:1px solid var(--stone);background:var(--warm-white);transition:all 0.2s;white-space:nowrap;}
+.rd-group label:has(input:checked){background:var(--charcoal);color:var(--cream);border-color:var(--charcoal);}
+.rd-group input{display:none;}
+.form-error{display:none;color:#9B2020;font-family:'Montserrat',sans-serif;font-size:0.75rem;margin-bottom:1rem;padding:0.8rem 1rem;background:rgba(155,32,32,0.05);border-left:2px solid #9B2020;}
+.form-foot{text-align:center;margin-top:2.5rem;}
+.btn-primary{background:var(--charcoal);border:none;color:var(--cream);padding:1rem 3.5rem;font-family:'Montserrat',sans-serif;font-size:0.68rem;font-weight:400;letter-spacing:0.4em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;}
+.btn-primary:hover{background:var(--gold);}
+
+/* RSVP OK */
+#rsvp-ok{display:none;text-align:center;max-width:780px;margin:3.5rem auto 0;padding:4rem;background:var(--warm-white);border:1px solid var(--stone);}
+#rsvp-ok .ok-rule{width:1px;height:60px;background:var(--gold);margin:0 auto 2rem;}
+#rsvp-ok h3{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--charcoal);margin-bottom:1rem;}
+#rsvp-ok p{color:var(--text-mid);font-size:1rem;line-height:1.9;}
+#rsvp-ok .hashtag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--gold);margin-top:1.5rem;display:block;letter-spacing:0.15em;}
+.cal-block{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--stone);}
+.cal-block p{font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.cal-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.cal-btn{display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--stone);color:var(--charcoal);text-decoration:none;padding:0.7rem 1.5rem;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;transition:all 0.2s;background:var(--warm-white);cursor:pointer;}
+.cal-btn:hover{background:var(--charcoal);color:var(--cream);border-color:var(--charcoal);}
+
+/* ─── FOOTER ─── */
+footer{background:var(--charcoal);text-align:center;padding:5rem 2rem;border-top:1px solid rgba(168,135,74,0.2);}
+.foot-top{display:flex;align-items:center;gap:2rem;justify-content:center;margin-bottom:2rem;}
+.foot-line{width:80px;height:1px;background:rgba(168,135,74,0.3);}
+.foot-mono{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:200;color:var(--gold);letter-spacing:0.25em;}
+footer p{font-family:'Montserrat',sans-serif;font-size:0.6rem;color:rgba(253,250,245,0.3);letter-spacing:0.3em;line-height:2.4;text-transform:uppercase;}
+.foot-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:rgba(168,135,74,0.5);margin-top:1.5rem;display:block;}
+
+/* ─── FADE IN ─── */
+.fi{opacity:0;transform:translateY(20px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.fi.in{opacity:1;transform:translateY(0);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .info-grid{grid-template-columns:1fr 1fr;}
+  .info-cell:nth-child(2n){border-right:none;}
+  .info-cell{border-bottom:1px solid var(--stone);}
+  .info-cell:nth-last-child(-n+2){border-bottom:none;}
+}
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:7rem 2rem 3rem;}
+  .hero-right{height:50vw;max-height:400px;}
+  .hero-right::after{background:linear-gradient(to bottom,var(--cream) 0%,transparent 8%);}
+  .hero-scroll{left:2rem;}
+  .historia-layout{grid-template-columns:1fr;}
+  .historia-photo{height:380px;}
+  .programa-grid{grid-template-columns:1fr;}
+  .prog-divider{display:none;}
+  .loc-cards{grid-template-columns:1fr;max-width:500px;}
+  nav{padding:1rem 1.5rem;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:var(--warm-white);padding:1.5rem;gap:1rem;border-bottom:1px solid var(--stone);}
+  nav ul.open{display:flex;}
+  .hamburger{display:flex;}
+}
+@media(max-width:640px){
+  section{padding:4.5rem 1.2rem;}
+  .hero-left{padding:6rem 1.5rem 2.5rem;}
+  .hero-names{font-size:clamp(3rem,13vw,4.5rem);}
+  .countdown{gap:0.8rem;}
+  .count-num{font-size:2.2rem;}
+  .dia-head,.tl{padding:1.5rem;}
+  .tl-row{gap:0 0.8rem;}
+  .info-grid{grid-template-columns:1fr;}
+  .info-cell{border-right:none!important;border-bottom:1px solid var(--stone)!important;}
+  .info-cell:last-child{border-bottom:none!important;}
+  .rsvp-form{padding:2rem 1.2rem;margin:2rem 0 0;}
+  .frow{grid-template-columns:1fr;gap:0;}
+  .form-foot .btn-primary{width:100%;}
+  #rsvp-ok{padding:2.5rem 1.5rem;margin:2rem 0 0;}
+  .dc-inner{padding:2rem 1.2rem;}
+  footer{padding:3.5rem 1.5rem;}
+  .foot-mono{font-size:2.4rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-wrap">
+    <div class="login-ornament">
+      <div class="orn-line"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-line"></div>
+    </div>
+    <div class="login-monogram">Daniel & Fernando</div>
+    <p class="login-sub">Acceso privado · Mayo 2027</p>
+    <input type="text" id="lu" placeholder="Usuario" autocomplete="off">
+    <input type="password" id="lp" placeholder="Contraseña">
+    <button class="btn-login" onclick="doLogin()">Acceder</button>
+    <p class="login-error" id="lerr">Credenciales incorrectas</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">D & F</div>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  <ul id="nav-ul">
+    <li><a href="#historia" onclick="closeNav()">Historia</a></li>
+    <li><a href="#programa" onclick="closeNav()">Programa</a></li>
+    <li><a href="#localizaciones" onclick="closeNav()">Lugares</a></li>
+    <li><a href="#info" onclick="closeNav()">Información</a></li>
+    <li><a href="#rsvp" onclick="closeNav()">Confirmar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Con todo nuestro amor, os invitamos</p>
+    <h1 class="hero-names">Daniel<span class="amp">&</span>Fernando</h1>
+    <div class="hero-rule"></div>
+    <div class="hero-date">
+      <span>Viernes 28 · Sábado 29 · Mayo 2027</span>
+      <span class="place">Castillo de Batres · Hotel Ritz Madrid</span>
+    </div>
+    <div class="countdown">
+      <div class="count-item"><span class="count-num" id="cd-d">—</span><span class="count-label">Días</span></div>
+      <span class="count-sep">·</span>
+      <div class="count-item"><span class="count-num" id="cd-h">—</span><span class="count-label">Horas</span></div>
+      <span class="count-sep">·</span>
+      <div class="count-item"><span class="count-num" id="cd-m">—</span><span class="count-label">Min</span></div>
+      <span class="count-sep">·</span>
+      <div class="count-item"><span class="count-num" id="cd-s">—</span><span class="count-label">Seg</span></div>
+    </div>
+    <div class="hero-scroll"><span>desplaza</span><div class="scroll-line"></div></div>
+  </div>
+  <div class="hero-right">
+    <img src="https://gserranodaniel-ctrl.github.io/boda-fer-y-dani/foto1.jpeg" alt="Daniel y Fernando">
+  </div>
+</section>
+
+<!-- HISTORIA -->
+<section id="historia">
+  <div class="container">
+    <span class="section-label fi">Nuestra historia</span>
+    <h2 class="section-title fi">Todo empezó con <em>una espera</em></h2>
+    <div class="rule-center fi"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+    <div class="historia-layout">
+      <div class="historia-text fi">
+        <p>Fernando llegó tarde. Lo que podría haber sido el peor comienzo fue, en realidad, el principio de la mejor historia que podíamos imaginar. Esa espera — que se hizo eterna y no duró nada — fue el primer minuto de todo lo que vino después.</p>
+        <p>Desde entonces el tiempo no ha parado de volar. Los años se han convertido en viajes, en risas a destiempo, en madrugadas largas, en proyectos compartidos y en la certeza silenciosa de que el otro siempre estará ahí.</p>
+        <p>Hoy queremos celebrar ese amor rodeados de las personas que más queremos en el mundo. Que sepáis que si estáis en esta web, es porque sois parte de nuestra historia.</p>
+        <p class="firma">— Con todo nuestro amor, Daniel & Fernando</p>
+      </div>
+      <div class="historia-photo fi">
+        <img src="https://gserranodaniel-ctrl.github.io/boda-fer-y-dani/foto1.jpeg" onclick="openLb('https://gserranodaniel-ctrl.github.io/boda-fer-y-dani/foto1.jpeg')" alt="Daniel y Fernando" style="cursor:pointer;">
+        <p class="historia-caption">Daniel & Fernando · 2027</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMA -->
+<section id="programa">
+  <div class="container">
+    <span class="section-label fi">El gran día</span>
+    <h2 class="section-title light fi">Programa de <em>celebración</em></h2>
+    <div class="rule-center fi"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+    <div class="programa-grid fi">
+      <div class="dia-card">
+        <div class="dia-head">
+          <span class="dia-num">28</span>
+          <span class="dia-mes">Viernes · Mayo · 2027</span>
+          <span class="dia-lugar">Castillo de Batres, Madrid</span>
+        </div>
+        <div class="tl">
+          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-vert"></div></div><div class="tl-body"><h4>Llegada</h4><p>Bienvenida y recepción</p></div></div>
+          <div class="tl-row"><span class="tl-time">19:30</span><div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-vert"></div></div><div class="tl-body"><h4>Ceremonia</h4><p>El momento más especial</p></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-vert"></div></div><div class="tl-body"><h4>Cóctel</h4><p>Jardines del castillo</p></div></div>
+          <div class="tl-row"><span class="tl-time">22:00</span><div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-vert"></div></div><div class="tl-body"><h4>Cena</h4><p>Gran salón</p></div></div>
+          <div class="tl-row"><span class="tl-time">00:00</span><div class="tl-line-wrap"><div class="tl-dot"></div></div><div class="tl-body"><h4>Fiesta</h4><p>Música y baile</p></div></div>
+        </div>
+      </div>
+      <div class="prog-divider"></div>
+      <div class="dia-card">
+        <div class="dia-head">
+          <span class="dia-num">29</span>
+          <span class="dia-mes">Sábado · Mayo · 2027</span>
+          <span class="dia-lugar">Hotel Ritz Madrid</span>
+        </div>
+        <div class="tl">
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-vert"></div></div><div class="tl-body"><h4>Llegada</h4><p>Bienvenida en el Ritz</p></div></div>
+          <div class="tl-row"><span class="tl-time">13:30</span><div class="tl-line-wrap"><div class="tl-dot"></div><div class="tl-vert"></div></div><div class="tl-body"><h4>Cóctel de bienvenida</h4><p>Jardín del hotel</p></div></div>
+          <div class="tl-row"><span class="tl-time">14:30</span><div class="tl-line-wrap"><div class="tl-dot"></div></div><div class="tl-body"><h4>Comida de celebración</h4><p>Brunch exclusivo para cerrar con el mismo brillo con que empezamos</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALIZACIONES -->
+<section id="localizaciones">
+  <div class="container">
+    <span class="section-label fi">Dónde celebramos</span>
+    <h2 class="section-title fi">Los <em>lugares</em></h2>
+    <div class="rule-center fi"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+    <div class="loc-cards">
+      <div class="loc-card fi">
+        <div class="loc-card-img"><img src="https://gserranodaniel-ctrl.github.io/boda-fer-y-dani/foto5.jpeg" alt="Castillo de Batres"></div>
+        <div class="loc-card-body">
+          <span class="loc-tag">Viernes 28 de Mayo · 2027</span>
+          <h3>Castillo de Batres</h3>
+          <p>Un castillo del siglo XV en plena naturaleza madrileña. Sus jardines históricos y su gran salón son el escenario perfecto para una noche que no olvidaréis.</p>
+          <a class="btn-ghost" href="https://maps.google.com/?q=Castillo+de+Batres+Madrid" target="_blank">Ver en Google Maps →</a>
+        </div>
+      </div>
+      <div class="loc-card fi">
+        <div class="loc-card-img"><img src="https://gserranodaniel-ctrl.github.io/boda-fer-y-dani/foto6.jpg" alt="Hotel Ritz Madrid" onerror="this.src='https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80'"></div>
+        <div class="loc-card-body">
+          <span class="loc-tag">Sábado 29 de Mayo · 2027</span>
+          <h3>Hotel Ritz Madrid</h3>
+          <p>El hotel más emblemático de Madrid desde 1910. Sus salones Belle Époque y su jardín de terciopelo son el broche de oro que merece esta celebración.</p>
+          <a class="btn-ghost" href="https://maps.google.com/?q=Hotel+Ritz+Madrid+Plaza+de+la+Lealtad" target="_blank">Ver en Google Maps →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLb()">
+  <span id="lb-close">✕ cerrar</span>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<!-- DRESSCODE POPUP -->
+<div id="dresscode-popup">
+  <div class="dc-inner">
+    <button id="dc-close" onclick="closeDresscode()">✕ cerrar</button>
+    <h3>Dress Code</h3>
+    <span class="dc-sub">Inspiración para vuestra elección</span>
+    <p>Algunas ideas que encajan con el estilo de la noche. No son reglas, son inspiración.</p>
+    <div class="dc-grid">
+      <img src="https://gserranodaniel-ctrl.github.io/boda-fer-y-dani/foto10.jpeg" alt="Look 1">
+      <img src="https://gserranodaniel-ctrl.github.io/boda-fer-y-dani/foto11.jpeg" alt="Look 2">
+      <img src="https://gserranodaniel-ctrl.github.io/boda-fer-y-dani/foto12.jpeg" alt="Look 3">
+      <img src="https://gserranodaniel-ctrl.github.io/boda-fer-y-dani/foto13.jpeg" alt="Look 4">
+    </div>
+    <div class="dc-note"><strong>Para la comida del Ritz (sábado)</strong> el ambiente es más relajado — unos vaqueros elegantes con una buena camisa o blusa están perfectos.</div>
+  </div>
+</div>
+
+<!-- INFO -->
+<section id="info">
+  <div class="container">
+    <span class="section-label fi">Todo lo que necesitas</span>
+    <h2 class="section-title fi">Información <em>práctica</em></h2>
+    <div class="rule-center fi"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+    <div class="info-grid fi">
+      <div class="info-cell">
+        <span class="info-num">01</span>
+        <h4>Dress Code</h4>
+        <p>Formal elegante para el viernes — vestido largo o midi para ellas, traje oscuro para ellos. Llevad un chal ligero para la noche en el jardín.<br><br>Para el Ritz del sábado, ambiente más relajado.</p>
+        <button class="btn-small" onclick="openDresscode()">Ver inspiración →</button>
+      </div>
+      <div class="info-cell">
+        <span class="info-num">02</span>
+        <h4>Alojamiento</h4>
+        <p>Si venís de fuera de Madrid, <strong>avisadnos antes de reservar nada</strong> — estamos gestionando opciones para los que viajáis. Indicadlo en el formulario de confirmación y os informamos.</p>
+      </div>
+      <div class="info-cell">
+        <span class="info-num">03</span>
+        <h4>Lista de bodas</h4>
+        <p>Vuestra presencia es el mejor regalo. Si queréis contribuir a nuestro viaje de novios:<br><br><strong>ES00 0000 0000 0000 0000 0000</strong></p>
+      </div>
+      <div class="info-cell">
+        <span class="info-num">04</span>
+        <h4>¿Alguna duda?</h4>
+        <p>Para cualquier cosa, escribidnos directamente:</p>
+        <div class="contact-block">
+          <div class="contact-entry">
+            <span class="cname">Daniel</span>
+            <a href="tel:+34645516876">645 516 876</a>
+          </div>
+          <div class="contact-entry">
+            <span class="cname">Fernando</span>
+            <a href="tel:+34649485472">649 485 472</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp">
+  <div class="container">
+    <span class="section-label fi">¿Nos acompañas?</span>
+    <h2 class="section-title fi">Confirma tu <em>asistencia</em></h2>
+    <div class="rule-center fi"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+    <p class="fi" style="text-align:center;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--text-mid);text-transform:uppercase;margin-top:0.5rem;">Antes del <strong style="color:var(--gold)">1 de Abril de 2027</strong></p>
+
+    <div class="rsvp-form fi" id="rsvp-form-wrap">
+      <p class="form-error" id="form-error">Por favor revisa los campos obligatorios antes de continuar.</p>
+      <div class="frow">
+        <div class="fg"><label>Nombre completo *</label><input type="text" id="f-nombre" placeholder="Tu nombre completo"></div>
+        <div class="fg"><label>Teléfono *</label><input type="tel" id="f-tel" placeholder="+34 600 000 000"></div>
+      </div>
+      <div class="fg">
+        <label>¿Vienes de fuera de Madrid? *</label>
+        <div class="rd-group" id="rg-fuera">
+          <label><input type="radio" name="fuera_madrid" value="Vivo en Madrid"> 🏙 Vivo en Madrid</label>
+          <label><input type="radio" name="fuera_madrid" value="Sí, vengo de fuera"> 🚆 Vengo de fuera</label>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Acompañantes *</label>
+        <div class="rd-group" id="rg-acomp">
+          <label><input type="radio" name="acompanantes" value="Solo yo" onchange="toggleAcomp(this)"> 🙋 Solo yo</label>
+          <label><input type="radio" name="acompanantes" value="+1 persona" onchange="toggleAcomp(this)"> 👫 + 1 persona</label>
+          <label><input type="radio" name="acompanantes" value="+1 con niños" onchange="toggleAcomp(this)"> 👨‍👩‍👧 + 1 con niños</label>
+        </div>
+      </div>
+      <div class="fg" id="ac-nombres" style="display:none;"><label>Nombre del acompañante *</label><input type="text" id="f-acomp-nom" placeholder="Nombre completo"></div>
+      <div class="fg" id="ac-ninos" style="display:none;"><label>¿Cuántos niños? *</label><select id="f-ninos"><option value="1">1 niño</option><option value="2">2 niños</option><option value="3">3 niños</option><option value="4">4 niños</option></select></div>
+      <div class="fg">
+        <label>Tu menú *</label>
+        <div class="rd-group" id="rg-menu">
+          <label><input type="radio" name="menu" value="Normal"> Normal</label>
+          <label><input type="radio" name="menu" value="Vegetariano"> Vegetariano</label>
+          <label><input type="radio" name="menu" value="Vegano"> Vegano</label>
+          <label><input type="radio" name="menu" value="Sin gluten"> Sin gluten</label>
+          <label><input type="radio" name="menu" value="Alergia" onchange="document.getElementById('alerg-f').style.display='block'"> ⚠ Alergia</label>
+        </div>
+      </div>
+      <div class="fg" id="alerg-f" style="display:none;"><label>Especifica tu alergia *</label><input type="text" id="f-alergia" placeholder="Frutos secos, lácteos..."></div>
+      <div class="fg">
+        <label>¿Necesitas transporte desde Madrid? *</label>
+        <div class="rd-group" id="rg-bus">
+          <label><input type="radio" name="transporte" value="Sí"> 🚌 Sí, me apunto</label>
+          <label><input type="radio" name="transporte" value="No"> 🚗 No, voy por mi cuenta</label>
+          <label><input type="radio" name="transporte" value="Aún no sé"> 🤔 Aún no sé</label>
+        </div>
+      </div>
+      <div class="fg"><label>🎵 Canción que no puede faltar <span style="opacity:0.5;">(opcional)</span></label><input type="text" id="f-cancion" placeholder="Artista — Canción"></div>
+      <div class="fg"><label>💌 Mensaje para Daniel & Fernando <span style="opacity:0.5;">(opcional)</span></label><textarea id="f-mensaje" placeholder="Escríbeles lo que sientes..."></textarea></div>
+      <div class="form-foot"><button type="button" class="btn-primary" onclick="submitRsvp()">Confirmar asistencia</button></div>
+    </div>
+
+    <div id="rsvp-ok">
+      <div class="ok-rule"></div>
+      <h3>¡Gracias!</h3>
+      <p>Tu confirmación ha quedado registrada.<br>Nos vemos en el Castillo de Batres — va a ser una noche inolvidable.</p>
+      <span class="hashtag">#DanielYFernando2027</span>
+      <div class="cal-block">
+        <p>Añade la boda a tu calendario</p>
+        <div class="cal-btns">
+          <a id="cal-google" href="#" target="_blank" class="cal-btn">📅 Google Calendar</a>
+          <a id="cal-ics" href="#" class="cal-btn">🍎 Apple / Outlook (.ics)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-line"></div>
+    <span class="foot-mono">D & F</span>
+    <div class="foot-line"></div>
+  </div>
+  <p>28 · 29 de Mayo · 2027</p>
+  <p>Castillo de Batres · Hotel Ritz Madrid</p>
+  <span class="foot-quote">"Fernando llegó tarde. Y fue el mejor momento de mi vida."</span>
+</footer>
+
+<script>
+const CREDS={u:'invitado',p:'boda2025'};
+const WEDDING=new Date(2027,4,28,18,30,0);
+
+window.onload=()=>{
+  document.getElementById('lp').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+  if(sessionStorage.getItem('w_auth')==='1'){document.getElementById('login-screen').style.display='none';init();}
+};
+function doLogin(){
+  const u=document.getElementById('lu').value.trim(),p=document.getElementById('lp').value;
+  if(u===CREDS.u&&p===CREDS.p){sessionStorage.setItem('w_auth','1');document.getElementById('login-screen').style.display='none';init();}
+  else document.getElementById('lerr').style.display='block';
+}
+function init(){countdown();scrollFade();}
+function toggleNav(){document.getElementById('nav-ul').classList.toggle('open');}
+function closeNav(){document.getElementById('nav-ul').classList.remove('open');}
+function countdown(){
+  function tick(){
+    const diff=WEDDING-new Date();
+    if(diff<=0){document.querySelector('.countdown').innerHTML='<p style="font-family:Cormorant Garamond,serif;font-size:2rem;font-weight:300;color:var(--gold);">¡Hoy es el día!</p>';return;}
+    const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
+    document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+    document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+  }
+  tick();setInterval(tick,1000);
+}
+function scrollFade(){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+}
+function openLb(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLb(){document.getElementById('lightbox').classList.remove('active');}
+function openDresscode(){document.getElementById('dresscode-popup').classList.add('active');}
+function closeDresscode(){document.getElementById('dresscode-popup').classList.remove('active');}
+function toggleAcomp(el){
+  const v=el.value;
+  document.getElementById('ac-nombres').style.display=(v==='+1 persona'||v==='+1 con niños')?'block':'none';
+  document.getElementById('ac-ninos').style.display=v==='+1 con niños'?'block':'none';
+}
+function submitRsvp(){
+  const errEl=document.getElementById('form-error');let ok=true;
+  function markInput(el,bad){if(el)el.style.borderColor=bad?'#9B2020':'var(--stone)';}
+  function markRG(id,bad){document.querySelectorAll(`#${id} label`).forEach(l=>l.style.borderColor=bad?'#9B2020':'var(--stone)');}
+  const nombre=document.getElementById('f-nombre').value.trim();markInput(document.getElementById('f-nombre'),!nombre);if(!nombre)ok=false;
+  const tel=document.getElementById('f-tel').value.trim();markInput(document.getElementById('f-tel'),!tel);if(!tel)ok=false;
+  const fuera=document.querySelector('input[name="fuera_madrid"]:checked');markRG('rg-fuera',!fuera);if(!fuera)ok=false;
+  const acomp=document.querySelector('input[name="acompanantes"]:checked');markRG('rg-acomp',!acomp);if(!acomp)ok=false;
+  if(document.getElementById('ac-nombres').style.display!=='none'){const n=document.getElementById('f-acomp-nom').value.trim();markInput(document.getElementById('f-acomp-nom'),!n);if(!n)ok=false;}
+  const menu=document.querySelector('input[name="menu"]:checked');markRG('rg-menu',!menu);if(!menu)ok=false;
+  if(document.getElementById('alerg-f').style.display!=='none'){const a=document.getElementById('f-alergia').value.trim();markInput(document.getElementById('f-alergia'),!a);if(!a)ok=false;}
+  const bus=document.querySelector('input[name="transporte"]:checked');markRG('rg-bus',!bus);if(!bus)ok=false;
+  if(!ok){errEl.style.display='block';document.getElementById('rsvp-form-wrap').scrollIntoView({behavior:'smooth',block:'start'});return;}
+  errEl.style.display='none';
+  buildCalendarLinks();
+  document.getElementById('rsvp-form-wrap').style.display='none';
+  const ok2=document.getElementById('rsvp-ok');ok2.style.display='block';ok2.scrollIntoView({behavior:'smooth'});
+}
+function buildCalendarLinks(){
+  const s1='20270528T163000Z',e1='20270529T020000Z',s2='20270529T113000Z',e2='20270529T160000Z';
+  const t1=encodeURIComponent('Boda Daniel & Fernando 💍'),l1=encodeURIComponent('Castillo de Batres, Batres, Madrid'),d1=encodeURIComponent('#DanielYFernando2027');
+  document.getElementById('cal-google').href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${t1}&dates=${s1}/${e1}&location=${l1}&details=${d1}`;
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DanielFernando//Boda2027//ES','BEGIN:VEVENT','UID:boda-castillo-2027@df','DTSTART:'+s1,'DTEND:'+e1,'SUMMARY:Boda Daniel & Fernando 💍','LOCATION:Castillo de Batres','END:VEVENT','BEGIN:VEVENT','UID:boda-ritz-2027@df','DTSTART:'+s2,'DTEND:'+e2,'SUMMARY:Comida Daniel & Fernando · Hotel Ritz 🥂','LOCATION:Hotel Ritz Madrid','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'});
+  const el=document.getElementById('cal-ics');el.href=URL.createObjectURL(blob);el.download='boda-daniel-y-fernando-2027.ics';
+}
+</script>
+</body>
+</html>
