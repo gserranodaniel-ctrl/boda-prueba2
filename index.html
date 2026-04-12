@@ -113,15 +113,15 @@ button{font-family:var(--ff-ui);cursor:none}
 .rule-c{display:flex;align-items:center;gap:1rem;justify-content:center;margin:1.4rem auto;width:fit-content}
 .rule-c .rl{width:55px;height:1px;background:var(--gold)}
 .rule-c .dia{width:6px;height:6px;transform:rotate(45deg);background:var(--gold)}
-.container{max-width:1100px;margin:0 auto}
+.container{max-width:900px;margin:0 auto}
 
 /* ── NARRATIVE BLOCKS ── */
 #narrative{background:var(--off);position:relative}
-.story-block{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.story-block{display:grid;grid-template-columns:1fr 1fr;min-height:85vh}
 .story-block.flip{direction:rtl}
 .story-block.flip>*{direction:ltr}
 .story-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;padding:3.5rem;overflow:hidden}
-.img-box{width:100%;max-width:400px;aspect-ratio:3/4;overflow:hidden;position:relative}
+.img-box{width:100%;max-width:340px;aspect-ratio:3/4;overflow:hidden;position:relative}
 .img-box img{width:100%;height:100%;object-fit:cover;filter:grayscale(8%) contrast(1.04);transition:transform .7s;cursor:zoom-in}
 .img-box:hover img{transform:scale(1.04)}
 .img-ph{width:100%;max-width:400px;aspect-ratio:3/4;position:relative;overflow:hidden}
@@ -130,8 +130,8 @@ button{font-family:var(--ff-ui);cursor:none}
 .ip3{background:linear-gradient(155deg,#18281e,#243c2a)}
 .ip4{background:linear-gradient(155deg,#0c180e,#1e2e1a)}
 .img-ph::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='.07'/%3E%3C/svg%3E");mix-blend-mode:overlay}
-.story-scroll-col{padding:12vh 3.5rem 12vh 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:18vh}
-.story-scroll-col.r{padding:12vh 2.5rem 12vh 3.5rem}
+.story-scroll-col{padding:8vh 3.5rem 8vh 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:12vh}
+.story-scroll-col.r{padding:8vh 2.5rem 8vh 3.5rem}
 .stu{opacity:0;transform:translateY(48px)}
 .s-tag-gold{font-family:var(--ff-ui);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.9rem}
 .s-headline{font-family:var(--ff-ser);font-style:italic;font-weight:300;font-size:clamp(2.2rem,4.2vw,4.5rem);line-height:.95;color:var(--td);margin-bottom:1.3rem}
@@ -149,8 +149,6 @@ button{font-family:var(--ff-ui);cursor:none}
 .map-card-top{padding:1rem 1.2rem .8rem}
 .map-card-label{font-family:var(--ff-ser);font-size:1rem;font-weight:400;color:var(--cream);display:block;margin-bottom:.2rem}
 .map-card-addr{font-family:var(--ff-ui);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);display:block}
-.map-frame-wrap{width:100%;height:160px;overflow:hidden}
-.map-frame-wrap iframe{width:100%;height:100%;border:none;display:block;filter:grayscale(30%) contrast(.9) brightness(.85)}
 .map-card-btn{display:block;padding:.75rem 1.2rem;font-family:var(--ff-ui);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border-top:1px solid rgba(196,164,74,.2);transition:background .25s}
 .map-card-btn:hover{background:rgba(196,164,74,.08)}
 
@@ -160,8 +158,8 @@ button{font-family:var(--ff-ui);cursor:none}
 .mq-item{font-family:var(--ff-ser);font-style:italic;font-size:clamp(.9rem,1.8vw,1.3rem);color:var(--gold);padding-right:3rem;letter-spacing:.05em}
 
 /* ── PROGRAMA ── */
-#programa{background:var(--dkgreen);padding:8rem 2rem}
-.prog-card{max-width:640px;margin:3.5rem auto 0;border:1px solid rgba(196,164,74,.22);background:rgba(0,0,0,.28)}
+#programa{background:var(--dkgreen);padding:5rem 2rem}
+.prog-card{max-width:520px;margin:2.5rem auto 0;border:1px solid rgba(196,164,74,.22);background:rgba(0,0,0,.28)}
 .prog-head{padding:2rem 2.4rem 1.5rem;border-bottom:1px solid rgba(196,164,74,.18);text-align:center}
 .prog-num{font-family:var(--ff-ser);font-size:3.5rem;font-weight:200;color:var(--gold);line-height:1;display:block}
 .prog-name{font-family:var(--ff-ser);font-size:1rem;font-weight:300;color:var(--cream);letter-spacing:.2em;text-transform:uppercase;margin-top:.2rem}
@@ -179,7 +177,7 @@ button{font-family:var(--ff-ui);cursor:none}
 .tl-p{font-family:var(--ff-eb);font-size:.82rem;color:var(--sage);margin-top:.15rem;line-height:1.6}
 
 /* ── DRESSCODE ── */
-#dresscode{background:var(--warm);padding:8rem 2rem}
+#dresscode{background:var(--warm);padding:5rem 2rem}
 .dc-intro{max-width:760px;margin:0 auto 4vh}
 .dc-intro p{font-family:var(--ff-eb);font-size:1rem;color:var(--tm);line-height:1.95;text-align:center}
 .dc-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(10,18,10,.12);border:1px solid rgba(10,18,10,.12);max-width:760px;margin:3rem auto}
@@ -219,13 +217,13 @@ button{font-family:var(--ff-ui);cursor:none}
 #lb-x:hover{opacity:1}
 
 /* ── RSVP ── */
-#rsvp{background:var(--black);padding:8rem 2rem;position:relative;overflow:hidden}
+#rsvp{background:var(--black);padding:5rem 2rem;position:relative;overflow:hidden}
 #rsvp::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(29,74,50,.38) 0%,transparent 60%);pointer-events:none}
 .rsvp-head{text-align:center;margin-bottom:3.5rem}
 .rsvp-head h2{font-family:var(--ff-ser);font-style:italic;font-weight:300;font-size:clamp(3rem,8vw,7rem);line-height:.9;color:var(--white);margin-bottom:.5rem}
 .rsvp-deadline{font-family:var(--ff-ui);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 .rsvp-deadline strong{color:var(--gold)}
-.rsvp-box{background:var(--off);max-width:780px;margin:0 auto;padding:3.5rem;position:relative}
+.rsvp-box{background:var(--off);max-width:640px;margin:0 auto;padding:2.5rem;position:relative}
 .rsvp-box::before,.rsvp-box::after{content:'';position:absolute;width:28px;height:28px;border-color:var(--gold);border-style:solid}
 .rsvp-box::before{top:10px;left:10px;border-width:1px 0 0 1px}
 .rsvp-box::after{bottom:10px;right:10px;border-width:0 1px 1px 0}
@@ -284,7 +282,7 @@ button{font-family:var(--ff-ui);cursor:none}
 }
 .chk-group label:hover{border-color:rgba(29,74,50,.5);background:rgba(0,51,32,.03)}
 .bus-note{font-family:var(--ff-eb);font-style:italic;font-size:.85rem;color:var(--tm);margin-top:.8rem;line-height:1.7}
-#rsvp-ok{display:none;text-align:center;max-width:780px;margin:0 auto;padding:4rem 3.5rem;background:var(--off);position:relative}
+#rsvp-ok{display:none;text-align:center;max-width:640px;margin:0 auto;padding:3rem 2.5rem;background:var(--off);position:relative}
 #rsvp-ok::before,#rsvp-ok::after{content:'';position:absolute;width:28px;height:28px;border-color:var(--gold);border-style:solid}
 #rsvp-ok::before{top:10px;left:10px;border-width:1px 0 0 1px}
 #rsvp-ok::after{bottom:10px;right:10px;border-width:0 1px 1px 0}
@@ -347,7 +345,7 @@ footer p{font-family:var(--ff-ui);font-size:.68rem;color:var(--sage);letter-spac
 /* sticky 4-photo quad grid */
 .sticky-quad-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:.4rem;
-  width:100%;max-width:400px;
+  width:100%;max-width:340px;
 }
 .sticky-quad-grid img{
   width:100%;aspect-ratio:1/1;object-fit:cover;
@@ -359,8 +357,8 @@ footer p{font-family:var(--ff-ui);font-size:.68rem;color:var(--sage);letter-spac
 .dc-mixed-grid{
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  gap:.5rem;
-  max-width:900px;margin:0 auto;
+  gap:.4rem;
+  max-width:760px;margin:0 auto;
 }
 .dc-mixed-grid img{
   width:100%;aspect-ratio:3/4;object-fit:cover;
@@ -467,9 +465,6 @@ footer p{font-family:var(--ff-ui);font-size:.68rem;color:var(--sage);letter-spac
             <div class="map-card-top">
               <span class="map-card-label">📍 Castillo de Batres</span>
               <span class="map-card-addr">Batres, 28909 Madrid · 45 min del centro</span>
-            </div>
-            <div class="map-frame-wrap">
-              <iframe src="https://maps.google.com/maps?q=Castillo+de+Batres,+Batres,+Madrid&output=embed" loading="lazy" title="Castillo de Batres"></iframe>
             </div>
             <a class="map-card-btn" href="https://maps.google.com/?q=Castillo+de+Batres+Madrid" target="_blank">Abrir en Google Maps →</a>
           </div>
@@ -579,7 +574,6 @@ footer p{font-family:var(--ff-ui);font-size:.68rem;color:var(--sage);letter-spac
     </div>
 
     <div class="dc-gallery fi">
-      <div class="dc-gallery-label">Inspiración</div>
       <div class="dc-mixed-grid">
         <img src="Ambos0.jpeg" alt="Look" onclick="openLb(this.src)">
         <img src="Ambos1.jpeg" alt="Look" onclick="openLb(this.src)">
